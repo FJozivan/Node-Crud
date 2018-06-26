@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 Detalhe do contato
+  form(method="post" action="/contatoExcluir")
+    input(type="hidden" value="#{nome}" id="nome" name="nome")
+    input(type="submit" value="Excluir" class="btn btn-danger")
+
+  form(method="post" action="/contatoAtualizarForm")
+    input(type="hidden" value="#{nome}" id="nome" name="nome")
+    input(type="hidden" value="#{telefone}" id="telefone" name="telefone")
+    input(type="submit" value="Atualizar" class="btn btn-danger")
+  hr
+  li Nome: #{nome}
+  li Telefone: #{telefone}
+  br
+  

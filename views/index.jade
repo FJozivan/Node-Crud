@@ -1,0 +1,85 @@
+extends layout
+
+block content
+	div(class="row")
+		div(class="col-lg-12")
+			center
+				h1(style="font-family: 'Open Sans', sans-serif; margin-bottom: 0px; margin-bottom: 30px;") Nossos Clientes
+	div(class="row")
+		div(class="col-md-6 col-lg-6")
+			center
+				a(class="btn btn-primary btn-lg" href="#myModalCadastro" data-toggle="modal") Seja nosso Cliente
+		div(class="col-lg-6")
+			
+			div(class="contain")
+				span(class="glyphicon glyphicon-search s" style="opacity: 0.6")
+				center
+					input(class="search" type="search" id="myInput" placehorder="Pesquisar")
+	
+	div(id="myModalCadastro" class="modal fade" role="dialog")	  
+		div(class="modal-dialog")
+			div(class="modal-content")
+				form(action="/clienteSalvar" method="post")
+					div(class="modal-header")
+						button(type="button" class="close" data-dismiss="modal") &times;
+						center
+							img(src="images/avatar1.png" alt="Smiley face")
+
+					div(class="modal-body")
+							input(type="hidden" class="form-control" id="id" name="id")
+							div(class="form-group")
+								div Seu nome:
+								input(type="text" class="form-control" id="nome" name="nome" placehorder="Seu nome")
+							div(class="form-group")
+								div(for="email") Email:
+								input(type="email" class="form-control" id="email" name="email" placehorder="E-mail")
+							div(class="form-group")
+								div(for="telefone1") Telefone
+								input(type="text" class="form-control" id="telefone1" name="telefone1" placehorder="Telefone")
+							div(class="form-group")
+								div(for="telefone2") Celular
+								input(type="text" class="form-control" id="telefone2" name="telefone2" placehorder="")
+					div(class="modal-footer")
+						input(type="submit" class="btn btn-success"  value="Salvar")
+						button(type="button" class="btn btn-default" data-dismiss="modal") Close
+	div(class="row")
+		each cliente in clientes
+
+			div(class="col-md-6 col-lg-3 cards-div") 
+				div(class="cards" style="padding: 4%;")
+					a(class="glyphicon glyphicon-remove-circle  fechar" style="position: absolute; font-size: 170%; margin-left: 83%; margin-top: 1%; color: black;   background-color: #BFA6E1; border-radius: 50%;text-decoration: none;" href="/clienteExcluir/"+cliente._id)
+					div(align="center")
+						img(src="../images/avatar1.png" class="avatar")
+						br
+						h4= cliente.nome
+						a(class="glyphicon glyphicon-plus-sign" style="font-size: 170%;text-decoration: none;" data-toggle="modal" href="#myModal"+cliente._id)
+						div(class="contatos")
+							hr(class="hrs")
+							div(class="email")= cliente.email
+							div(class="telefone")= cliente.telefone1
+			div(id="myModal"+cliente._id, class="modal fade" role="dialog")	  
+				div(class="modal-dialog")
+					div(class="modal-content")
+						form(action="/clienteAtualizar" method="post")
+							div(class="modal-header")
+								button(type="button" class="close" data-dismiss="modal" style="hover{background-color: gray;}") &times;
+								center
+									img(src="images/avatar1.png" alt="Smiley face")
+									h4(class="modal-title")= cliente.nome
+							div(class="modal-body")
+									input(type="hidden" class="form-control" id="id" name="id" value="#{cliente._id}")
+									div(class="form-group")
+										div(for="nome") Nome do Cliente:
+										input(type="text" class="form-control" id="nome" name="nome" value="#{cliente.nome}")
+									div(class="form-group")
+										div(for="email") Email:
+										input(type="email" class="form-control" id="email" name="email" value="#{cliente.email}")
+									div(class="form-group")
+										div(for="telefone1") Telefone
+										input(type="text" class="form-control" id="telefone1" name="telefone1" value="#{cliente.telefone1}")
+									div(class="form-group")
+										div(for="telefone2") Celular
+										input(type="text" class="form-control" id="telefone2" name="telefone2" value="#{cliente.telefone2}")
+							div(class="modal-footer")
+								input(type="submit" class="btn btn-warning"  value="Alterar")
+								button(type="button" class="btn btn-default" data-dismiss="modal") Close

@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	h1(align = "center") Clientes
+	br
+	button(class="btn btn-primary" value="novo" onclick="location.href='/clienteForm'") Novo
+	hr
+	table(class="table table-striped table-sm")
+		thead
+		tr(class="table-primary")
+				th Nome 
+				th Tel 1
+				th Tel 2
+				th E-mail
+				th Deletar
+		tbody
+				each cliente in clientes
+						tr 
+								td
+										a(href='/clienteEditar/' + cliente.nome + '/' + cliente.telefone1 + '/' + cliente.telefone2 + '/' + cliente.email) cliente.nome
+										span(class = "glyphicons-eye-open")
+								td cliente.telefone1
+								td cliente.telefone2
+								td cliente.email
+								td 
+									span(class = "glyphicons-remove-sign")

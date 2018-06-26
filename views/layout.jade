@@ -1,0 +1,18 @@
+doctype html
+html
+	head
+		title= title
+		
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+		
+	body(style="background-color: #F0D1E3;")
+
+		div(class = "container-fluid" style = "margin: 20px;")
+			block content
+
+	script(src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous")
+
+	script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+
+	script(href="/javascripts/modal.js")
